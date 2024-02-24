@@ -46,28 +46,34 @@ function run() {
     outputDisplay.innerHTML = ``;
     hexabtn.forEach((element) => {
       element.disabled = false;
-      element.style.backgroundColor = ` #fbabb8`;
-
+      
       if (inputType.value == `10`) {
         element.disabled = true;
-        element.style.backgroundColor = `#cbcbcb83`;
-      } else if (inputType.value == `2`) {
-        element.disabled = true;
-        element.style.backgroundColor = `#cbcbcb83`;
+        element.classList.add(`text-[#cbcbcb83]`)
+        
       } else if (inputType.value == `16`) {
         element.disabled = false;
-
-        element.style.color = ``;
+        element.classList.remove(`text-[#cbcbcb83]`)
+       
+        
       }
       if (inputType.value == `8`) {
         element.disabled = true;
-        element.style.backgroundColor = `#cbcbcb83`;
+        element.classList.add(`text-[#cbcbcb83]`)
+       
+      }
+      else{
+        element.style.color=``
       }
     });
     forbin.forEach((element) => {
       element.disabled = false;
       if (inputType.value == `2`) {
         element.disabled = true;
+        element.style.color= `#cbcbcb83`;
+      }
+      else{
+        element.style.color=``
       }
     });
     octal();
@@ -85,7 +91,11 @@ function run() {
 
     if (fromBase == toBase) {
       outputDisplay.innerHTML = numbers;
-    } else {
+    } 
+    else if (inputDisplay.innerHTML ==``) {
+      outputDisplay.innerHTML=``
+    }
+     else {
       let parts = numbers.split(`.`);
       let intpart = parts[0];
       floatpart = parts[1];
@@ -191,10 +201,17 @@ function run() {
     foroct2.disabled = false;
     if (inputType.value == `8`) {
       foroct1.disabled = true;
+      foroct1.style.color=`#cbcbcb83`
       foroct2.disabled = true;
+      foroct2.style.color=`#cbcbcb83`
+      
     } else if (inputType.value == `2`) {
       foroct1.disabled = true;
+      foroct1.style.color=`#cbcbcb83`
+      
       foroct2.disabled = true;
+      foroct1.style.color=`#cbcbcb83`
+      
     }
   }
   //  setInterval(() => {

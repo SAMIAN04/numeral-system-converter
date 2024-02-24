@@ -1,65 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="number.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="output.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>number converter</title>
-</head>
-<body>
-  
-  <div class="main">
-    
-    <div class="input">
-        <h2 class="inh">Input</h2>
-        <select name="select a system" id="inputtype">
-            <option class="option1" value="10">Decimal</option>
-            <option class="option1" value="2">Binary</option>
-            <option class="option1" value="16">Hexadecimal</option>
-            <option class="option1" value="8">Octal</option>            
+  </head>
+  <body class="bg-gray-700 flex justify-center items-center">
+    <div class="flex justify-center items-center h-[100vh] w-[100vw]">
+    <div
+      class="main mt-[1vh] rounded-lg p-4 overflow-hidden bg-gray-800 w-[395px] h-[800px] flex flex-col justify-center items-center"
+    >
+      <div class="input w-[85%] h-[150px] flex  justify-end items-end">
+        <div class="flex flex-col w-[50%]  h-[100%] ">
+        <h2 class="inh font-extrabold text-xl pb-1 pl-1 text-green-200">Input</h2>
+        <select
+          name="select a system"
+          id="inputtype"
+          class="bg-[#9b000000] bg-none text-[16px] font-bold w-[84px] p-2 text-green-300"
+        >
+          <option class="option1" value="10">Decimal</option>
+          <option class="option1" value="2">Binary</option>
+          <option class="option1" value="16">Hexadecimal</option>
+          <option class="option1" value="8">Octal</option>
         </select>
-           <div class="display"></div>
     </div>
-    <div class="output">
-        <h2 class="ouh">output</h2>
-        <select name="select a system" id="outputtype">
-            <option class="option2" value="10">Decimal</option>
-            <option class="option2" value="2">Binary</option>
-            <option class="option2" value="16">Hexadecimal</option>
-            <option class="option2" value="8">Octal</option>            
+        <div class=" w-[50%] h-[73%] flex-wrap  overflow-wrap overflow-scroll text-white"><span class="display max-w-[90%]  h-[100%] flex-wrap w-[100%] overflow-x-scroll  break-normal break-words"></span></div>
+    
+      </div>
+      <div class="output  w-[85%] h-[150px] flex  justify-end items-end">
+        <div class="flex flex-col w-[50%]  h-[100%] ">
+        <h2 class="ouh font-extrabold text-xl pb-1 pl-1 text-green-200">output</h2>
+        <select name="select a system" id="outputtype" class="bg-[#9b000000] bg-none text-[16px] font-bold w-20 p-2 text-green-300">
+          <option class="option2" value="10">Decimal</option>
+          <option class="option2" value="2">Binary</option>
+          <option class="option2" value="16">Hexadecimal</option>
+          <option class="option2" value="8">Octal</option>
         </select>
-           <div class="display2"></div>
+    </div>
+    <div class=" w-[50%] h-[73%] flex-wrap  overflow-wrap overflow-scroll text-white"><span class="display2 max-w-[90%]  h-[100%] flex-wrap w-[100%] overflow-x-scroll  break-normal break-words"></span></div>
+    
     </div>
 
-       <div class="buttons">
-        <button data-key="c" class="btn ac">AC</button>
-        <button data-key="d" class="btn del">DEL</button>
+      
+      <div class="buttons grid grid-cols-4 grid-rows-5 text-green-300 h-[300px] w-[100%]">
+        <button data-key="c" class="btn ac text-red-300">AC</button>
+        <button data-key="d" class="btn del text-red-300">DEL</button>
         <button data-key="A" id="a" class="btn r">A</button>
         <button data-key="B" class="btn r">B</button>
-        <button data-key="1" class="btn">1</button>
-        <button data-key="2" class="btn forbin">2</button>
-        <button data-key="3" class="btn forbin">3</button>
-        <button data-key="C" class="btn r">C</button>
-        <button data-key="4" class="btn forbin">4</button>
-        <button data-key="5" class="btn forbin">5</button>
-        <button data-key="6" class="btn forbin">6</button>
-        <button data-key="D" class="btn r">D</button>
-        <button data-key="7" class="btn forbin">7</button>
-        <button id="foroct1" data-key="8" class="btn  forbin ">8</button>
-        <button id="foroct2" data-key="9" class="btn  forbin ">9</button>
+        <button data-key="1" class="btn ">1</button>
+        <button data-key="2" class="btn  forbin">2</button>
+        <button data-key="3" class="btn  forbin">3</button>
+        <button data-key="C" class="btn  r">C</button>
+        <button data-key="4" class="btn  forbin">4</button>
+        <button data-key="5" class="btn  forbin">5</button>
+        <button data-key="6" class="btn  forbin">6</button>
+        <button data-key="D" class="btn  r">D</button>
+        <button data-key="7" class="btn  forbin">7</button>
+        <button id="foroct1" data-key="8" class="btn forbin">8</button>
+        <button id="foroct2" data-key="9" class="btn forbin">9</button>
         <button data-key="E" class="btn r">E</button>
         <button data-key="0" class="btn">0</button>
         <button data-key="00" class="btn">00</button>
-        <button data-key="" class="btn dot">.</button>
+        <button data-key="" class="btn dot font-extrabold">.</button>
         <button data-key="F" class="btn r">F</button>
-       </div>
-
+      </div>
+    </div>
   </div>
-    
-
-
-
     <script src="number2.js"></script>
-</body>
+  </body>
 </html>
