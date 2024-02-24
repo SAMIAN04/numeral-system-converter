@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>number converter</title>
   </head>
-  <body class="bg-gray-700 flex justify-center items-center">
-    <div class="flex justify-center items-center h-[100vh] w-[100vw]">
+  <body class="bg-gray-700 flex justify-center items-center max-h-[100vh]">
+    <div class="flex justify-center items-center h-[100vh] w-[100vw] relative  sm:w-[395px]  ">
+      <div class="mt-0   mb-6 absolute top-[29px] left-[29px] flex flex-row justify-center items-center z-[1]"><img src="logo.png" alt="logo" class="w-[50px] "><h2 class="pl-2 pt-2 text-xl text-purple-400 font-bold">SAMIAN's</h2></div>
     <div
-      class="main mt-[1vh] rounded-lg p-4 overflow-hidden bg-gray-800 w-[395px] h-[800px] flex flex-col justify-center items-center"
+      class="main  rounded-lg px-4  overflow-hidden bg-gray-800 w-[100vw] h-[100%] flex flex-col justify-center items-center fixed sm:w-[395px] sm:h-[900px] "
     >
-      <div class="input w-[85%] h-[150px] flex  justify-end items-end">
+   
+      <div class="input w-[85%] h-[150px] flex  justify-end items-end ">
         <div class="flex flex-col w-[50%]  h-[100%] ">
-        <h2 class="inh font-extrabold text-xl pb-1 pl-1 text-green-200">Input</h2>
+        <h2 class="inh font-extrabold text-2xl pb-1 pl-1 text-green-200 tracking-wide">Input</h2>
         <select
           name="select a system"
           id="inputtype"
-          class="bg-[#9b000000] bg-none text-[16px] font-bold w-[84px] p-2 text-green-300"
+          class="bg-[#9b000000] bg-none text-[16px] font-bold w-[90px] p-2 text-green-300"
         >
           <option class="option1" value="10">Decimal</option>
           <option class="option1" value="2">Binary</option>
@@ -31,8 +33,8 @@
       </div>
       <div class="output  w-[85%] h-[150px] flex  justify-end items-end">
         <div class="flex flex-col w-[50%]  h-[100%] ">
-        <h2 class="ouh font-extrabold text-xl pb-1 pl-1 text-green-200">output</h2>
-        <select name="select a system" id="outputtype" class="bg-[#9b000000] bg-none text-[16px] font-bold w-20 p-2 text-green-300">
+        <h2 class="ouh font-extrabold text-xl pb-1 pl-1 text-green-200 text-2xl">output</h2>
+        <select name="select a system" id="outputtype" class="bg-[#9b000000] bg-none text-[16px] font-bold w-[90px] p-2 text-green-300">
           <option class="option2" value="10">Decimal</option>
           <option class="option2" value="2">Binary</option>
           <option class="option2" value="16">Hexadecimal</option>
@@ -44,7 +46,7 @@
     </div>
 
       
-      <div class="buttons grid grid-cols-4 grid-rows-5 text-green-300 h-[300px] w-[100%]">
+      <div class="buttons grid grid-cols-4 grid-rows-5 text-green-300 h-[420px] w-[100%] font-bold  b">
         <button data-key="c" class="btn ac text-red-300">AC</button>
         <button data-key="d" class="btn del text-red-300">DEL</button>
         <button data-key="A" id="a" class="btn r">A</button>
