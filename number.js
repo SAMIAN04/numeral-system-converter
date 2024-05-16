@@ -1,102 +1,115 @@
-//on threre i define all varriables and i was faced some issue with class query selector
-document.addEventListener(`DOMContentLoaded`,run());
-function run() {
-const inputDisplay = document.querySelector(`.display`);
-const outputDisplay = document.querySelector(`.display2`);
-const buttons = document.querySelectorAll(`.btn`);
-const inputType = document.getElementById(`inputtype`)
-const outputtype = document.getElementById(`outputtype`)
-const hexabtn = document.querySelectorAll(`.r`)
-const forbin = document.querySelectorAll(`.forbin`) 
-const foroct1 = document.getElementById(`foroct1`)
-const foroct2 = document.getElementById(`foroct2`) 
-const dot = document.querySelector(`.dot`)     
-let input = ``; 
-  hexabtn.disabled = true;
- dot.addEventListener(`click`,dotfun)
-   function dotfun() {
-    alert(`This feature is not availaible yet.I will add this feature soon insaallah.`)
-   }
-   buttons.forEach(button=>{
-    button.addEventListener(`click`,handleButtonClick)
-    });
-function handleButtonClick(click) {
-  const key = click.target.dataset.key;
-  input = key;
-   inputDisplay.innerHTML += input;
-   if (key == `c`) {
-    inputDisplay.innerHTML = ``
-   }
-   else if (key == `d`){
-    inputDisplay.innerHTML = inputDisplay.innerHTML.slice(0,-2)
-   }
-   
-   convert()
-}
-inputType.addEventListener(`change`,buttonHandler)
-
-function buttonHandler() {
-hexabtn.forEach(element => {
-  element.disabled = false
-   
-   if (inputType.value == `10`) {
-    element.disabled = true ;
-    element.style.backgroundColor = `#cbcbcb83`
-  }
-  else if (inputType.value == `2`){
-    element.disabled = true ;
-    element.style.backgroundColor = `#cbcbcb83`
-  }
+import {
+  buttonClickHandlar,
+  buttonEnabled,
+  convertEvaluate,
+  buttonStatusHandlar,
+  convert,
+  percentClickHandler,
+  percentStatusHandler,
+  symbolsClick,
+  buttonDisabled,
   
-  else if (inputType.value == `16`) {
-    element.disabled = false;
-    element.style.backgroundColor =  ` #fbabb8`;
-    element.style.color = ``
-  }
-  if (inputType.value == `8`){
-    element.disabled = true ;
-    element.style.backgroundColor = `#cbcbcb83`
-}});
-forbin.forEach(element =>{
-element.disabled = false ;
-if (inputType.value == `2`) {
-  element.disabled = true;
-}})
-octal();
-convert()}
-outputtype.addEventListener(`change`,convert)
-function convert() {
-  try {
-    const inputBase = document.getElementById(`inputtype`).value;
-    const outputBase = document.getElementById(`outputtype`).value;
-    input = inputDisplay.innerHTML
-    const decimalValue = parseInt(input,inputBase)
-    const convertedValue = decimalValue.toString(outputBase).toUpperCase()
-    outputDisplay.innerHTML = convertedValue;
-if (convertedValue == `NAN`) {
-      outputDisplay.innerHTML =``;
+} from "./functions.js";
+import { converteval } from "./functions.js";
+//on threre i define all varriables and i was faced some issue with class query selector
+document.addEventListener(`DOMContentLoaded`, run());
+function run() {
+  const inputDisplay = document.querySelector(`.display`);
+  const outputDisplay = document.querySelector(`.display2`);
+  const buttons = document.querySelectorAll(`.btn`);
+  const inputType = document.getElementById(`inputtype`);
+  const outputtype = document.getElementById(`outputtype`);
+  const binaryBtn = document.querySelector(`.binaryBtn`);
+  const decimelBtn = document.querySelectorAll(`.decimelBtn`);
+  const hexaBtn = document.querySelectorAll(`.hexaBtn`);
+  const octalBtn = document.querySelectorAll(`.octalBtn`);
+  const dot = document.querySelector(`.dot`);
+  const symbols = document.querySelectorAll(`.symbol`);
+  const percents = document.querySelector(`.percent`);
+  const ac = document.querySelector(`.ac`);
+  const DEL = document.querySelector(`.del`);
+buttonEnabled(percents);
+ 
+  function updateOutputDisplay() {
+    if (
+      inputDisplay.innerHTML.includes(`+`) ||
+      inputDisplay.innerHTML.includes(`-`) ||
+      inputDisplay.innerHTML.includes(`X`) ||
+      inputDisplay.innerHTML.includes(`÷`) ||
+      inputDisplay.innerHTML.includes(`%`)
+    ) {
+    outputDisplay.innerHTML = convertEvaluate(inputDisplay.innerHTML, inputType.value, outputtype.value)===`NaN` ?`Input at least two valid numbers for perform any operation`: convertEvaluate(inputDisplay.innerHTML, inputType.value, outputtype.value)
     }
-  } catch (error) {
-    outputDisplay.innerHTML = `input something valid`;
+    else{
+    outputDisplay.innerHTML = convert(
+      inputDisplay.innerHTML,
+      inputType.value,
+      outputtype.value
+    )}
   }
-}
-function octal() {
-  foroct1.disabled = false;
-  foroct2.disabled = false;
-  if (inputType.value == `8`) {
-    foroct1.disabled = true;
-    foroct2.disabled = true;
-  }
-  else if (inputType.value == `2`){
-    foroct1.disabled = true;
-    foroct2.disabled = true;
-  }
-}
-setInterval(() => {
-  buttonHandler()
-}, 10);
 
+  // this function is called for update buttons initial status
+  buttonStatusHandlar(
+    binaryBtn,
+    hexaBtn,
+    decimelBtn,
+    octalBtn,
+    inputType.value
+  );
+  //end
+
+  //this function or event listener will change the status of buttons when inputtype will change
+  inputType.addEventListener(
+    `change`,()=>{
+    buttonStatusHandlar(
+    binaryBtn,
+    hexaBtn,
+    decimelBtn,
+    octalBtn,
+    inputType.value
+  )
+    inputDisplay.innerHTML = ``;
+    outputDisplay.innerHTML = ``;
+
+    }
+    
+  );
+  outputtype.addEventListener(`change`,()=>{
+    updateOutputDisplay()
+  })
+  //end
+
+  //this will run when any button will clicked
+  buttons.forEach((button) => {
+    button.addEventListener(`click`, (e) => {
+      buttonClickHandlar(inputDisplay, e);
+      updateOutputDisplay()
+    });
+  });
+  symbols.forEach((symbol)=>{
+    symbol.addEventListener(`click`,(e)=>{
+      
+      symbolsClick(e,inputDisplay,percents)
+      
+    })
+  })
+  //end
+
+  //this is for AC or del
+  ac.addEventListener(`click`, () => {
+    inputDisplay.innerHTML = ``;
+    outputDisplay.innerHTML = ``;
+    buttonEnabled(percents)
+  });
+
+  DEL.addEventListener(`click`, () => {
+    inputDisplay.innerHTML = inputDisplay.innerHTML.slice(0,-1)
+    updateOutputDisplay(outputDisplay.innerHTML)
+    percentStatusHandler(percents,inputDisplay)
+  });
+  percents.addEventListener(`click`,()=>{
+    percentClickHandler(inputDisplay,percents,percents)
+    updateOutputDisplay()
+  })
 }
-//Hey if you are seeing this code I hope you will make something
-//better than it. I was made this using my android phone. You have computer
-//man go ahead and make something great.
+//end
